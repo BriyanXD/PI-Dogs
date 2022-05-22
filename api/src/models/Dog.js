@@ -10,8 +10,9 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
       },
-      nombre: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -25,6 +26,10 @@ module.exports = (sequelize) => {
       },
       tiempo_vida: {
         type: DataTypes.INTEGER,
+      },
+      createdDB: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
     },
     {
