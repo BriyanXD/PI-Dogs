@@ -28,7 +28,7 @@ async function getDogsDB() {
 async function getDogsAPI() {
   try {
     const dogsAPI = await axios("https://api.thedogapi.com/v1/breeds");
-    return dogsAPI;
+    return dogsAPI.data;
   } catch (error) {
     console.log(error);
   }
@@ -41,15 +41,19 @@ async function getAllDogs(req, res) {
   let alldogs = [];
 
   //con promesas va mas rapido
-  await Promise.all([getDogsDB(), getDogsAPI()]).then(
-    (resultados) => (alldogs = [...resultados[0], ...resultados[1].data])
+  /* const dogsApi = getDogsAPI().then((respons) => (alldogs = [...respons.data]));
+  const dogsDB = getDogsDB().then((respons) => (alldogs = [...respons]));
+  await Promise.all([dogsApi, dogsDB]); */
+
+  await Promise.all([getDogsAPI(), getDogsDB()]).then(
+    (r) => (alldogs = [...r[0], ...r[1]])
   );
 
-  // con async await tarda mas terminar las peticiones
-  /*   const dogsApi = await getDogsAPI();
+  // con async await tarda mas en terminar las peticiones
+  /* const dogsApi = await getDogsAPI();
   const dogsDB = await getDogsDB();
 
-  alldogs = [...dogsApi.data, ...dogsDB]; */
+  alldogs = [...dogsApi, ...dogsDB]; */
   try {
     // consulta por query
     if (name) {
