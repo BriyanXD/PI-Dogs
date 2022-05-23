@@ -10,7 +10,7 @@ async function getDogsDB() {
       include: [
         {
           model: Temperament,
-          attributes: ["nombre"],
+          attributes: ["name"],
           through: {
             attributes: [],
           },
@@ -82,7 +82,7 @@ async function getAllDogs(req, res) {
 
 // cramos nuevos datos y los guardamos en la DB
 async function setDog(req, res) {
-  const { name, altura, peso, tiempo_vida, id_temp } = req.body;
+  const { name, altura, peso, tiempo_vida, name_temp } = req.body;
   try {
     const addDog = await Dog.create({
       name,
@@ -90,7 +90,10 @@ async function setDog(req, res) {
       peso,
       tiempo_vida,
     });
-    await addDog.setTemperaments(id_temp);
+    const temperamentDB = await Temperament.findAll({
+      where: { name: name_temp },
+    });
+    await addDog.addTemperaments(temperamentDB);
     res.status(201).send(addDog);
   } catch (error) {
     res.status(400).json({ masagge: error.message });

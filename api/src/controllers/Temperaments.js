@@ -20,10 +20,10 @@ async function getTemperamentAPI() {
       return acumulador;
     }, []);
 
-    result.map((nombre) => {
+    result.map((name) => {
       Temperament.findOrCreate({
         where: {
-          nombre,
+          name,
         },
       });
     });
@@ -31,15 +31,17 @@ async function getTemperamentAPI() {
     res.status(400).send({ error: error.message });
   }
 }
+// lo ejecuto para cargar los temperamentos apenas iniciar el servidor
+getTemperamentAPI();
 
 async function getTemperamentDB(req, res) {
-  if (apiconsultada === false) {
+  /* if (apiconsultada === false) {
     await getTemperamentAPI();
     apiconsultada = true;
-  }
+  } */
   try {
-    const dogsDB = await Temperament.findAll();
-    res.json(dogsDB);
+    const temperamentDB = await Temperament.findAll();
+    res.json(temperamentDB);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
