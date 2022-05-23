@@ -1,5 +1,6 @@
 const { default: axios } = require("axios");
 const { parse } = require("dotenv");
+const e = require("express");
 const { Dog, Temperament } = require("../db.js");
 
 // traemos los datos de la base de datos
@@ -19,7 +20,7 @@ async function getDogsDB() {
 
     return dogsDB;
   } catch (error) {
-    return error;
+    console.log(error);
   }
 }
 
@@ -29,7 +30,7 @@ async function getDogsAPI() {
     const dogsAPI = await axios("https://api.thedogapi.com/v1/breeds");
     return dogsAPI;
   } catch (error) {
-    return error;
+    console.log(error);
   }
 }
 
@@ -37,17 +38,27 @@ async function getDogsAPI() {
 async function getAllDogs(req, res) {
   const { name } = req.query;
   const { id } = req.params;
+  let alldogs = [];
+
+  //con promesas va mas rapido
+  await Promise.all([getDogsDB(), getDogsAPI()]).then(
+    (resultados) => (alldogs = [...resultados[0], ...resultados[1].data])
+  );
+
+  // con async await tarda mas terminar las peticiones
+  /*   const dogsApi = await getDogsAPI();
+  const dogsDB = await getDogsDB();
+
+  alldogs = [...dogsApi.data, ...dogsDB]; */
   try {
-    const dogsDB = await getDogsDB();
-    const dogsAPI = await getDogsAPI();
-
-    alldogs = [...dogsDB, ...dogsAPI.data];
-
+    // consulta por query
     if (name) {
       const findDogs = await alldogs.filter((dog) => dog.name.includes(name));
       if (findDogs.length > 0) return res.send(findDogs);
       else return res.status(404).json({ error: "Datos no encontrados" });
     }
+
+    //consulta por params
     if (id) {
       const findDog = await alldogs.find((dog) => {
         if (dog.id.toString() === id) {
@@ -57,6 +68,8 @@ async function getAllDogs(req, res) {
       if (findDog) return res.send(findDog);
       else return res.status(404).json({ error: "ID inexistente" });
     }
+
+    // en caso de no recibir ningun paramentro retorna todo
     res.send(alldogs);
   } catch (error) {
     res.status(404).json({ error: error.message });
