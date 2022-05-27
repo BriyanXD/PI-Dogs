@@ -6,7 +6,7 @@ class Landing extends React.Component{
         return(
             <div>
                 <h1>DOG API</h1>
-                <Link to={"/home"}>
+                <Link to="/home">
                 <button>INGRESAR</button>
                 </Link>
             </div>

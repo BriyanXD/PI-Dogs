@@ -24,12 +24,17 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      tiempo_vida: {
-        type: DataTypes.INTEGER,
+      life_span: {
+        type: DataTypes.STRING,
       },
       createdDB: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+      },
+      image: {
+        type: DataTypes.STRING,
+        defaultValue:
+          "https://welovedoodles.com/wp-content/uploads/2022/01/Smiling-Dog-Memes.jpg",
       },
     },
     {
