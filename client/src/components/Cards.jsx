@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getDogs } from "../action";
 import Card from "./Card"
 
+
 class Cards extends React.Component{
 /*     constructor(props){
         super(props);
@@ -23,7 +24,7 @@ class Cards extends React.Component{
     render(){
         return(
             <main>
-                { this.renderDogs()}
+                {!this.props.getInfo.length > 0 ? <h2>Loading</h2> : this.renderDogs()}
             </main>
         )
     }

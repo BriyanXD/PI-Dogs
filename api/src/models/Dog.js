@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         defaultValue:
-          "https://welovedoodles.com/wp-content/uploads/2022/01/Smiling-Dog-Memes.jpg",
+          "https://m.media-amazon.com/images/I/41CDRmBt2oL._AC_SX466_.jpg",
       },
     },
     {

@@ -82,13 +82,14 @@ async function getAllDogs(req, res) {
 
 // cramos nuevos datos y los guardamos en la DB
 async function setDog(req, res) {
-  const { name, altura, peso, tiempo_vida, name_temp } = req.body;
+  const { name, altura, peso, life_span, name_temp, image } = req.body;
   try {
     const addDog = await Dog.create({
       name,
       altura,
       peso,
-      tiempo_vida,
+      life_span,
+      image,
     });
     const temperamentDB = await Temperament.findAll({
       where: { name: name_temp },

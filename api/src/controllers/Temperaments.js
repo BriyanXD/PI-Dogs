@@ -32,13 +32,13 @@ async function getTemperamentAPI() {
   }
 }
 // lo ejecuto para cargar los temperamentos apenas iniciar el servidor
-getTemperamentAPI();
+/* getTemperamentAPI(); */
 
 async function getTemperamentDB(req, res) {
-  /* if (apiconsultada === false) {
+  if (apiconsultada === false) {
     await getTemperamentAPI();
     apiconsultada = true;
-  } */
+  }
   try {
     const temperamentDB = await Temperament.findAll();
     res.json(temperamentDB);
