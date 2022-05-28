@@ -1,1 +1,2 @@
 export const GET_DATA_API = "GET_DATA_API";
+export const SEARCH_BY_SEARCH_BAR = "SEARCH_BY_SEARCH_BAR";

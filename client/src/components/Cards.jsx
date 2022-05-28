@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getDogs } from "../action";
 import Card from "./Card"
+import SearchBar from "./SearchBar";
 
 
 class Cards extends React.Component{
@@ -24,6 +25,7 @@ class Cards extends React.Component{
     render(){
         return(
             <main>
+                <SearchBar/>
                 {!this.props.getInfo.length > 0 ? <h2>Loading</h2> : this.renderDogs()}
             </main>
         )
