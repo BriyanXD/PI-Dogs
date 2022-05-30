@@ -1,8 +1,13 @@
-import { GET_DATA_API, SEARCH_BY_SEARCH_BAR } from "../type";
+import {
+  FILTER_BY_TEMPERAMENT,
+  GET_DATA_API,
+  GET_TEMPS_API,
+  SEARCH_BY_SEARCH_BAR,
+} from "../type";
 
 const initialState = {
   dogs: [],
-  resultDogsByFilter: [],
+  temperaments: [],
 };
 
 function reducers(state = initialState, action) {
@@ -13,6 +18,16 @@ function reducers(state = initialState, action) {
         dogs: action.payload,
       };
     case SEARCH_BY_SEARCH_BAR:
+      return {
+        ...state,
+        dogs: action.payload,
+      };
+    case GET_TEMPS_API:
+      return {
+        ...state,
+        temperaments: action.payload,
+      };
+    case FILTER_BY_TEMPERAMENT:
       return {
         ...state,
         dogs: action.payload,

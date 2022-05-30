@@ -3,14 +3,18 @@ import { connect } from "react-redux";
 import { getDogs } from "../action";
 import Card from "./Card"
 import SearchBar from "./SearchBar";
+import FiterTemp from "./FiterTemp";
 
 
 class Cards extends React.Component{
-/*     constructor(props){
+   /*  constructor(props){
         super(props);
+        this.state={
+            isLoading : false
+        }
     } */
     componentDidMount(){
-        this.props.getDogs()
+         this.props.getDogs()
     }
 
     renderDogs(){
@@ -26,7 +30,8 @@ class Cards extends React.Component{
         return(
             <main>
                 <SearchBar/>
-                {!this.props.getInfo.length > 0 ? <h2>Loading</h2> : this.renderDogs()}
+                <FiterTemp/>
+                {this.props.getInfo.length > 0 ?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
             </main>
         )
     }
