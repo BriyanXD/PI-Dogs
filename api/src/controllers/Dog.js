@@ -1,6 +1,6 @@
-const { default: axios } = require("axios");
-const { parse } = require("dotenv");
-const e = require("express");
+const axios = require("axios");
+require("dotenv").config();
+const { API_KEY } = process.env;
 const { Dog, Temperament } = require("../db.js");
 
 // traemos los datos de la base de datos
@@ -27,8 +27,19 @@ async function getDogsDB() {
 // Traemos los datos de la api
 async function getDogsAPI() {
   try {
-    const dogsAPI = await axios("https://api.thedogapi.com/v1/breeds");
-    return dogsAPI.data;
+    const dogsAPI = await axios(
+      `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
+    );
+    const resdogs = await dogsAPI.data.map((dog) => {
+      return {
+        id: dog.id,
+        name: dog.name,
+        image: dog.image,
+        life_span: dog.life_span,
+        temperaments: dog.temperament,
+      };
+    });
+    return resdogs;
   } catch (error) {
     console.log(error);
   }
@@ -57,7 +68,9 @@ async function getAllDogs(req, res) {
   try {
     // consulta por query
     if (name) {
-      const findDogs = await alldogs.filter((dog) => dog.name.includes(name));
+      const findDogs = await alldogs.filter((dog) =>
+        dog.name.toLowerCase().includes(name.toLowerCase())
+      );
       if (findDogs.length > 0) return res.send(findDogs);
       else return res.status(404).json({ error: "Datos no encontrados" });
     }
@@ -97,7 +110,7 @@ async function setDog(req, res) {
     await addDog.addTemperaments(temperamentDB);
     res.status(201).send(addDog);
   } catch (error) {
-    res.status(400).json({ masagge: error.message });
+    res.status(400).json({ error: error.message });
   }
 }
 

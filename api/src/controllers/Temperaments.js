@@ -6,7 +6,9 @@ let apiconsultada = false;
 
 async function getTemperamentAPI() {
   try {
-    const dogsAPI = await axios.get("https://api.thedogapi.com/v1/breeds");
+    const dogsAPI = await axios.get(
+      `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
+    );
     const temperamentos = dogsAPI.data
       .map((dog) => {
         return dog.temperament;
