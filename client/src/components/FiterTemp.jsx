@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux"
-import {getTemperaments, filterByTemperament} from "../action"
+import {getTemperaments, filterByTemperament, dogNumberForPagination} from "../action"
 
 //el estado filter pendiente
 class FilterTemp extends React.Component{
@@ -21,7 +21,8 @@ async selectOption(name){
     await this.setState({
         tempSelect : name
     })
-    this.props.filterByTemperament(this.state.tempSelect)
+    await this.props.filterByTemperament(this.state.tempSelect)
+    await this.props.dogNumberForPagination(this.props.lengthDogs)
 }
 
 //mapeamos el array que llega de redux para agregarlo al componenete
@@ -44,8 +45,9 @@ render(){
 //Pasamos el estado de los temperamentos como parametro
 const mapSstateToProps = (state) => {
     return{
-        temps: state.temperaments
+        temps: state.temperaments,
+        lengthDogs: state.dogs_length
     }
 }
 
-export default connect(mapSstateToProps,{getTemperaments,filterByTemperament})(FilterTemp);
+export default connect(mapSstateToProps,{getTemperaments,filterByTemperament, dogNumberForPagination})(FilterTemp);

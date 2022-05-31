@@ -3,11 +3,14 @@ import {
   GET_DATA_API,
   GET_TEMPS_API,
   SEARCH_BY_SEARCH_BAR,
+  PAGE_NUMBERS,
 } from "../type";
 
 const initialState = {
   dogs: [],
   temperaments: [],
+  dogs_length: 0,
+  numPages: [],
 };
 
 function reducers(state = initialState, action) {
@@ -16,11 +19,13 @@ function reducers(state = initialState, action) {
       return {
         ...state,
         dogs: action.payload,
+        dogs_length: action.payload.length,
       };
     case SEARCH_BY_SEARCH_BAR:
       return {
         ...state,
         dogs: action.payload,
+        dogs_length: action.payload.length,
       };
     case GET_TEMPS_API:
       return {
@@ -31,6 +36,12 @@ function reducers(state = initialState, action) {
       return {
         ...state,
         dogs: action.payload,
+        dogs_length: action.payload.length,
+      };
+    case PAGE_NUMBERS:
+      return {
+        ...state,
+        numPages: chargePages(action.payload),
       };
     default:
       return state;
@@ -45,7 +56,16 @@ function reducers(state = initialState, action) {
     }
     return null;
   });
-  return result;
+  return result;manejador de paginado
 } */
+
+function chargePages(value) {
+  let pages = Math.ceil(value / 8);
+  let numpages = [];
+  for (let i = 1; i <= pages; i++) {
+    numpages.push(i);
+  }
+  return numpages;
+}
 
 export default reducers;

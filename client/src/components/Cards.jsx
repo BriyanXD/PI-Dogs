@@ -4,7 +4,8 @@ import { getDogs } from "../action";
 import Card from "./Card"
 import SearchBar from "./SearchBar";
 import FiterTemp from "./FiterTemp";
-
+import Paginated from "./Paginated";
+import { dogNumberForPagination } from "../action";
 
 class Cards extends React.Component{
    /*  constructor(props){
@@ -13,8 +14,9 @@ class Cards extends React.Component{
             isLoading : false
         }
     } */
-    componentDidMount(){
-         this.props.getDogs()
+    async componentDidMount(){
+         await this.props.getDogs()
+         await this.props.dogNumberForPagination(this.props.lengthDogs)
     }
 
     renderDogs(){
@@ -32,14 +34,16 @@ class Cards extends React.Component{
                 <SearchBar/>
                 <FiterTemp/>
                 {this.props.getInfo.length > 0 ?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
+                <Paginated/>
             </main>
         )
     }
 }
 const mapSateToProps = (state) => {
     return {
-        getInfo: state.dogs
+        getInfo: state.dogs,
+        lengthDogs: state.dogs_length,
     }
 }
 
-export default connect(mapSateToProps, {getDogs})(Cards);
+export default connect(mapSateToProps, {getDogs,dogNumberForPagination})(Cards);

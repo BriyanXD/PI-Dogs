@@ -12,8 +12,11 @@ export const GET_TEMPS_API = "GET_TEMPS_API";
 //filtra por temperamentos
 export const FILTER_BY_TEMPERAMENT = "FILTER_BY_TEMPERAMENT";
 
-//modifica el estado para mostrar el componente de carga
+// accion para el paginado
+export const PAGE_NUMBERS = "PAGE_NUMBERS";
+
+/* //modifica el estado para mostrar el componente de carga
 export const IS_LOADING = "IS_LOADING";
 
 //modifica el estado cuando la respueta de la api fue un 404
-export const RESPONSE_ERROR = "RESPONSE_ERROR";
+export const RESPONSE_ERROR = "RESPONSE_ERROR"; */

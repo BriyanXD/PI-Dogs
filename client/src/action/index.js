@@ -3,8 +3,7 @@ import {
   GET_DATA_API,
   GET_TEMPS_API,
   SEARCH_BY_SEARCH_BAR,
-  RESPONSE_ERROR,
-  IS_LOADING,
+  PAGE_NUMBERS,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -71,6 +70,35 @@ export function filterByTemperament(temp) {
     return dispatch({
       type: FILTER_BY_TEMPERAMENT,
       payload: res,
+    });
+  };
+}
+
+/* export function paginated() {
+  return async function (dispatch) {
+    var resp = await fetch("http://localhost:3001/api/dogs")
+      .then((response) => response.json())
+      .then((response) => {
+        let pages = Math.ceil(response.length / 8);
+        let numpages = [];
+        for (let i = 1; i <= pages; i++) {
+          numpages.push(i);
+        }
+        return numpages;
+      });
+    console.log(resp);
+    return dispatch({
+      type: PAGINATED,
+      payload: resp,
+    });
+  };
+} */
+
+export function dogNumberForPagination(lengthDogs) {
+  return async function (dispatch) {
+    return dispatch({
+      type: PAGE_NUMBERS,
+      payload: lengthDogs,
     });
   };
 }
