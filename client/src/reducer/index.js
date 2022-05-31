@@ -4,6 +4,7 @@ import {
   GET_TEMPS_API,
   SEARCH_BY_SEARCH_BAR,
   PAGE_NUMBERS,
+  CUT_FOR_PAGING,
 } from "../type";
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   temperaments: [],
   dogs_length: 0,
   numPages: [],
+  cutArrayDogs: "",
 };
 
 function reducers(state = initialState, action) {
@@ -43,6 +45,11 @@ function reducers(state = initialState, action) {
         ...state,
         numPages: chargePages(action.payload),
       };
+    case CUT_FOR_PAGING:
+      return {
+        ...state,
+        cutArrayDogs: chargeCutDogs(action.payload, state.dogs),
+      };
     default:
       return state;
   }
@@ -66,6 +73,13 @@ function chargePages(value) {
     numpages.push(i);
   }
   return numpages;
+}
+
+function chargeCutDogs(page, dogsArray) {
+  let min = 8 * (page - 1);
+  let max = 8 * page;
+  let arrayCut = dogsArray.slice(min, max);
+  return arrayCut;
 }
 
 export default reducers;

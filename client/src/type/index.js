@@ -12,8 +12,12 @@ export const GET_TEMPS_API = "GET_TEMPS_API";
 //filtra por temperamentos
 export const FILTER_BY_TEMPERAMENT = "FILTER_BY_TEMPERAMENT";
 
-// accion para el paginado
+// accion para el paginado agrega valores al estado de redux
+//para paginar agrega el numero de paginas
 export const PAGE_NUMBERS = "PAGE_NUMBERS";
+
+// corta el array de dogs para mostrar solo los que se requiere en la pagina
+export const CUT_FOR_PAGING = "CUT_FOR_PAGING";
 
 /* //modifica el estado para mostrar el componente de carga
 export const IS_LOADING = "IS_LOADING";

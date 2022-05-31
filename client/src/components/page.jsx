@@ -1,18 +1,24 @@
 import React from "react";
-
+import { cutForPaging } from "../action";
+import { connect } from "react-redux";
 
 
 class Page extends React.Component{
-    constructor(props){
-        super(props)
+    handlerClick = (value) => {
+        this.props.cutForPaging(value)
     }
+
+
     render(){
         return(
-            <button>{this.props.page}</button>
+            <button onClick={() => {this.handlerClick(this.props.value)}}>{this.props.value}</button>
     )
 }
 
 
 }
 
-export default Page;
+
+
+
+export default connect(null,{cutForPaging})(Page);

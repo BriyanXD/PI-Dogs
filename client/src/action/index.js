@@ -4,6 +4,7 @@ import {
   GET_TEMPS_API,
   SEARCH_BY_SEARCH_BAR,
   PAGE_NUMBERS,
+  CUT_FOR_PAGING,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -100,5 +101,12 @@ export function dogNumberForPagination(lengthDogs) {
       type: PAGE_NUMBERS,
       payload: lengthDogs,
     });
+  };
+}
+
+export function cutForPaging(page) {
+  return {
+    type: CUT_FOR_PAGING,
+    payload: page,
   };
 }

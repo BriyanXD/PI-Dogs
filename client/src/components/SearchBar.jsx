@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { searchDog } from "../action";
-import { dogNumberForPagination } from "../action";
+import { dogNumberForPagination, cutForPaging} from "../action";
 
 
 class SearchBar extends React.Component{
@@ -15,6 +15,7 @@ class SearchBar extends React.Component{
             await this.setState({ nameRace: value})
             await this.props.searchDog(this.state.nameRace)
             await this.props.dogNumberForPagination(this.props.lengthDogs)
+            await this.props.cutForPaging(1)
     }
     render(){
         return(
@@ -33,4 +34,4 @@ const mapSateToProps = (state) => {
 
 
 
-export default connect(mapSateToProps, {searchDog, dogNumberForPagination})(SearchBar);
+export default connect(mapSateToProps, {searchDog, dogNumberForPagination, cutForPaging})(SearchBar);

@@ -7,7 +7,7 @@ class Paginated extends React.Component{
 
    renderPages =() => {
        return this.props.numPages.map(page => {
-           return <Page page={page}/>
+           return <Page value={page} key={page}/>
        })
    }
 

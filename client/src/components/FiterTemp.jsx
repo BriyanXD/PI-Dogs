@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux"
-import {getTemperaments, filterByTemperament, dogNumberForPagination} from "../action"
+import {getTemperaments, filterByTemperament, dogNumberForPagination, cutForPaging} from "../action"
 
 //el estado filter pendiente
 class FilterTemp extends React.Component{
@@ -23,6 +23,7 @@ async selectOption(name){
     })
     await this.props.filterByTemperament(this.state.tempSelect)
     await this.props.dogNumberForPagination(this.props.lengthDogs)
+    await this.props.cutForPaging(1)
 }
 
 //mapeamos el array que llega de redux para agregarlo al componenete
@@ -50,4 +51,4 @@ const mapSstateToProps = (state) => {
     }
 }
 
-export default connect(mapSstateToProps,{getTemperaments,filterByTemperament, dogNumberForPagination})(FilterTemp);
+export default connect(mapSstateToProps,{getTemperaments,filterByTemperament, dogNumberForPagination, cutForPaging})(FilterTemp);
