@@ -22,6 +22,9 @@ export const CUT_FOR_PAGING = "CUT_FOR_PAGING";
 // accion para el filtrado de base de datos y api
 export const FILTER_BY_DB_OR_API = "FILTER_BY_DB_OR_API";
 
+// este sera el tipo para la accion de ordenado alfabetico
+export const ORDER_BY_ALPHABET = "ORDER_BY_ALPHABET";
+
 /* //modifica el estado para mostrar el componente de carga
 export const IS_LOADING = "IS_LOADING";
 

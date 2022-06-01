@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 import FiterTemp from "./FiterTemp";
 import Paginated from "./Paginated";
 import FilterDBorAPI from "./FilterDBorAPI";
+import OrderByAlphabet from "./OrderByAlphabet";
 
 class Cards extends React.Component{
    /*  constructor(props){
@@ -39,8 +40,10 @@ class Cards extends React.Component{
                 {/* Barra de busqueda */}
                 <SearchBar/>
                 {/* Filtros */}
-                <FiterTemp/><FilterDBorAPI/>
+                <FiterTemp/><FilterDBorAPI/><OrderByAlphabet/>
+                {/* Se cargan las tarjeas con la informacion */}
                 {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
+                {/* Paginado */}
                 <Paginated/>
             </main>
         )

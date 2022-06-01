@@ -37,6 +37,8 @@ async function getDogsAPI() {
         image: dog.image,
         life_span: dog.life_span,
         temperaments: dog.temperament,
+        weight: dog.weight.metric,
+        height: dog.height.metric,
       };
     });
     return resdogs;
@@ -95,12 +97,12 @@ async function getAllDogs(req, res) {
 
 // cramos nuevos datos y los guardamos en la DB
 async function setDog(req, res) {
-  const { name, altura, peso, life_span, name_temp, image } = req.body;
+  const { name, height, weight, life_span, name_temp, image } = req.body;
   try {
     const addDog = await Dog.create({
       name,
-      altura,
-      peso,
+      height,
+      weight,
       life_span,
       image,
     });

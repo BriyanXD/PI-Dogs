@@ -6,6 +6,7 @@ import {
   PAGE_NUMBERS,
   CUT_FOR_PAGING,
   FILTER_BY_DB_OR_API,
+  ORDER_BY_ALPHABET,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -143,5 +144,12 @@ export function filterByDBorAPI(type) {
       type: FILTER_BY_DB_OR_API,
       payload: responseFilter,
     });
+  };
+}
+// Ordena el resultado de manera alfabetica
+export function orderByAlphabet(orderType) {
+  return {
+    type: ORDER_BY_ALPHABET,
+    payload: orderType,
   };
 }

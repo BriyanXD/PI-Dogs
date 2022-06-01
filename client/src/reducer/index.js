@@ -6,6 +6,7 @@ import {
   PAGE_NUMBERS,
   CUT_FOR_PAGING,
   FILTER_BY_DB_OR_API,
+  ORDER_BY_ALPHABET,
 } from "../type";
 
 const initialState = {
@@ -61,6 +62,11 @@ function reducers(state = initialState, action) {
         dogs: action.payload,
         dogs_length: action.payload.length,
       };
+    case ORDER_BY_ALPHABET:
+      return {
+        ...state,
+        dogs: order(action.payload, state.dogs),
+      };
     default:
       return state;
   }
@@ -77,6 +83,7 @@ function reducers(state = initialState, action) {
   return result;manejador de paginado
 } */
 
+//calcula las paginas necesarias
 function chargePages(value) {
   let pages = Math.ceil(value / 8);
   let numpages = [];
@@ -86,12 +93,36 @@ function chargePages(value) {
   return numpages;
 }
 
+//corta el array para mostrar las paginas
 function chargeCutDogs(page, dogsArray, dogLength) {
   let min = 8 * (page - 1);
   let max = 8 * page;
   if (!dogLength) return "";
   let arrayCut = dogsArray.slice(min, max);
   return arrayCut;
+}
+
+//orden alfabetico
+function order(orderType, dogstate) {
+  let resultOrder = "";
+  if (orderType === "AaZz") {
+    resultOrder = dogstate.sort((a, b) => {
+      let anterior = a.name.substr(0, 2);
+      let actual = b.name.substr(0, 2);
+      if (anterior > actual) return 1;
+      if (anterior < actual) return -1;
+      return 0;
+    });
+  } else {
+    resultOrder = dogstate.sort((a, b) => {
+      let anterior = a.name.substr(0, 2);
+      let actual = b.name.substr(0, 2);
+      if (anterior < actual) return 1;
+      if (anterior > actual) return -1;
+      return 0;
+    });
+  }
+  return resultOrder;
 }
 
 export default reducers;
