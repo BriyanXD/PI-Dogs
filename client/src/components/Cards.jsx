@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getDogs } from "../action";
+import { getDogs,dogNumberForPagination,cutForPaging } from "../action";
 import Card from "./Card"
 import SearchBar from "./SearchBar";
 import FiterTemp from "./FiterTemp";
 import Paginated from "./Paginated";
-import { dogNumberForPagination } from "../action";
-import { cutForPaging } from "../action";
+import FilterDBorAPI from "./FilterDBorAPI";
 
 class Cards extends React.Component{
    /*  constructor(props){
@@ -24,18 +23,24 @@ class Cards extends React.Component{
     renderDogs(){
        return this.props.cutArrayDogs.map(dog => {
             if(dog.createdDB){
-                return <Card name={dog.name} key={dog.id} createdb={this.props.createdDB} image={dog.image}/>
+                let temps = dog.temperaments.reduce((acumulador, element) => {
+                    acumulador = acumulador +element.name+","
+                    return acumulador
+                },[])
+                return <Card name={dog.name} key={dog.id} createdb={this.props.createdDB} image={dog.image} temperaments={temps}/>
             }else{
-                return <Card name={dog.name} key={dog.id} createdb={this.props.createdDB} image={dog.image.url}/>
+                return <Card name={dog.name} key={dog.id} createdb={this.props.createdDB} image={dog.image.url} temperaments={dog.temperaments}/>
             }
         })
     }
     render(){
         return(
             <main>
+                {/* Barra de busqueda */}
                 <SearchBar/>
-                <FiterTemp/>
-                {this.props.cutArrayDogs.length > 0 ?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
+                {/* Filtros */}
+                <FiterTemp/><FilterDBorAPI/>
+                {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
                 <Paginated/>
             </main>
         )

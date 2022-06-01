@@ -5,6 +5,7 @@ import {
   SEARCH_BY_SEARCH_BAR,
   PAGE_NUMBERS,
   CUT_FOR_PAGING,
+  FILTER_BY_DB_OR_API,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -22,12 +23,16 @@ export function getDogs() {
 // cargamos todas los match con value al estado de redux
 export function searchDog(value) {
   return async function (dispatch) {
+    /*     try { */
     var response = await fetch(`http://localhost:3001/api/dogs?name=${value}`);
     var resjson = await response.json();
     return dispatch({
       type: SEARCH_BY_SEARCH_BAR,
       payload: resjson,
     });
+    /*     } catch (error) {
+      console.log("Error: 404, ", value, "No se encuentra");
+    } */
   };
 }
 // cargamos todos los temperametos al estado de redux
@@ -95,6 +100,7 @@ export function filterByTemperament(temp) {
   };
 } */
 
+// cargamos el numero de paginas para mostrar en la app
 export function dogNumberForPagination(lengthDogs) {
   return async function (dispatch) {
     return dispatch({
@@ -104,9 +110,38 @@ export function dogNumberForPagination(lengthDogs) {
   };
 }
 
+// cortamos el array para mostrarlo en la pagina
 export function cutForPaging(page) {
   return {
     type: CUT_FOR_PAGING,
     payload: page,
+  };
+}
+
+// filtramos si viene de la db o de la api
+export function filterByDBorAPI(type) {
+  return async function (dispatch) {
+    let responseAPI = await fetch("http://localhost:3001/api/dogs");
+    let responseJSON = await responseAPI.json();
+
+    if (type === "all") {
+      console.log(responseJSON);
+      return dispatch({
+        type: FILTER_BY_DB_OR_API,
+        payload: responseJSON,
+      });
+    }
+
+    let responseFilter = responseJSON.filter((element) => {
+      if (element.createdDB && type === "db") return element;
+      if (!element.createdDB && type === "api") return element;
+      return null;
+    });
+    console.log(responseFilter);
+
+    return dispatch({
+      type: FILTER_BY_DB_OR_API,
+      payload: responseFilter,
+    });
   };
 }

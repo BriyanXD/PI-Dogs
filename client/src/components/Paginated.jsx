@@ -14,7 +14,7 @@ class Paginated extends React.Component{
     render(){
         return(
             <div>
-                {this.props.lengthDogs ? this.renderPages():<h3>Loading pages</h3>}
+                {this.props.lengthDogs ? this.renderPages():<></>}
             </div>
         )
     }

@@ -5,6 +5,7 @@ import {
   SEARCH_BY_SEARCH_BAR,
   PAGE_NUMBERS,
   CUT_FOR_PAGING,
+  FILTER_BY_DB_OR_API,
 } from "../type";
 
 const initialState = {
@@ -48,7 +49,17 @@ function reducers(state = initialState, action) {
     case CUT_FOR_PAGING:
       return {
         ...state,
-        cutArrayDogs: chargeCutDogs(action.payload, state.dogs),
+        cutArrayDogs: chargeCutDogs(
+          action.payload,
+          state.dogs,
+          state.dogs_length
+        ),
+      };
+    case FILTER_BY_DB_OR_API:
+      return {
+        ...state,
+        dogs: action.payload,
+        dogs_length: action.payload.length,
       };
     default:
       return state;
@@ -75,9 +86,10 @@ function chargePages(value) {
   return numpages;
 }
 
-function chargeCutDogs(page, dogsArray) {
+function chargeCutDogs(page, dogsArray, dogLength) {
   let min = 8 * (page - 1);
   let max = 8 * page;
+  if (!dogLength) return "";
   let arrayCut = dogsArray.slice(min, max);
   return arrayCut;
 }

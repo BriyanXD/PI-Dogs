@@ -20,7 +20,7 @@ async function getDogsDB() {
 
     return dogsDB;
   } catch (error) {
-    console.log(error);
+    console.log("Error 404 en la base de datos");
   }
 }
 
@@ -41,7 +41,7 @@ async function getDogsAPI() {
     });
     return resdogs;
   } catch (error) {
-    console.log(error);
+    console.log("Error 404 en la API");
   }
 }
 
