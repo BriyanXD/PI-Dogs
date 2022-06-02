@@ -7,6 +7,7 @@ import {
   CUT_FOR_PAGING,
   FILTER_BY_DB_OR_API,
   ORDER_BY_ALPHABET,
+  ORDER_BY_WEIGTH,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -21,7 +22,7 @@ export function getDogs() {
     });
   };
 }
-// cargamos todas los match con value al estado de redux
+// agregamos todas los match con value al estado de redux
 export function searchDog(value) {
   return async function (dispatch) {
     /*     try { */
@@ -126,7 +127,6 @@ export function filterByDBorAPI(type) {
     let responseJSON = await responseAPI.json();
 
     if (type === "all") {
-      console.log(responseJSON);
       return dispatch({
         type: FILTER_BY_DB_OR_API,
         payload: responseJSON,
@@ -138,8 +138,8 @@ export function filterByDBorAPI(type) {
       if (!element.createdDB && type === "api") return element;
       return null;
     });
-    console.log(responseFilter);
-
+    if (responseFilter.length <= 0)
+      responseFilter = { error: "Datos no encontrados" };
     return dispatch({
       type: FILTER_BY_DB_OR_API,
       payload: responseFilter,
@@ -147,9 +147,16 @@ export function filterByDBorAPI(type) {
   };
 }
 // Ordena el resultado de manera alfabetica
-export function orderByAlphabet(orderType) {
+export function orderByAlphabetAction(orderType) {
   return {
     type: ORDER_BY_ALPHABET,
+    payload: orderType,
+  };
+}
+
+export function ordenByWeigthtAction(orderType) {
+  return {
+    type: ORDER_BY_WEIGTH,
     payload: orderType,
   };
 }

@@ -7,6 +7,7 @@ import {
   CUT_FOR_PAGING,
   FILTER_BY_DB_OR_API,
   ORDER_BY_ALPHABET,
+  ORDER_BY_WEIGTH,
 } from "../type";
 
 const initialState = {
@@ -65,7 +66,12 @@ function reducers(state = initialState, action) {
     case ORDER_BY_ALPHABET:
       return {
         ...state,
-        dogs: order(action.payload, state.dogs),
+        dogs: orderByAlphabet(action.payload, state.dogs),
+      };
+    case ORDER_BY_WEIGTH:
+      return {
+        ...state,
+        dogs: orderByWeigth(action.payload, state.dogs),
       };
     default:
       return state;
@@ -103,7 +109,7 @@ function chargeCutDogs(page, dogsArray, dogLength) {
 }
 
 //orden alfabetico
-function order(orderType, dogstate) {
+function orderByAlphabet(orderType, dogstate) {
   let resultOrder = "";
   if (orderType === "AaZz") {
     resultOrder = dogstate.sort((a, b) => {
@@ -125,4 +131,81 @@ function order(orderType, dogstate) {
   return resultOrder;
 }
 
+function orderByWeigth(orderType, dogstate) {
+  let resultOrder = "";
+
+  if (orderType === "min") {
+    resultOrder = dogstate.sort((a, b) => {
+      let [minAnterior, maxAnterior] = a.weight.split("-");
+      let [minActual, maxActual] = b.weight.split("-");
+
+      minAnterior = parseInt(minAnterior);
+      minActual = parseInt(minActual);
+
+      if (isNaN(minAnterior)) minAnterior = a.weight;
+      if (isNaN(minActual)) minActual = b.weight;
+
+      if (isNaN(minAnterior)) minAnterior = maxAnterior;
+      if (isNaN(minActual)) minActual = maxActual;
+
+      if (minAnterior > minActual) return 1;
+      if (minAnterior < minActual) return -1;
+      return 0;
+    });
+  } else {
+    resultOrder = dogstate.sort((a, b) => {
+      let [minAnterior, maxAnterior] = a.weight.split("-");
+      let [minActual, maxActual] = b.weight.split("-");
+
+      maxAnterior = parseInt(maxAnterior);
+      maxActual = parseInt(maxActual);
+
+      if (isNaN(maxAnterior)) maxAnterior = a.weight;
+      if (isNaN(maxActual)) maxActual = b.weight;
+
+      if (isNaN(maxAnterior)) maxAnterior = minAnterior;
+      if (isNaN(maxActual)) maxActual = minActual;
+
+      if (maxAnterior < maxActual) return 1;
+      if (maxAnterior > maxActual) return -1;
+      return 0;
+    });
+  }
+  return resultOrder;
+}
+
 export default reducers;
+
+/*       if (isNaN(minAnterior)) {
+        // conseguimos el peso imperial minimo del elemento anterior
+        let [minImpAnterior] = a.weight.imperial.split("-");
+        //busca el minimo imperial y lo convierte
+        minAnterior = parseInt(minImpAnterior) / 2.204;
+        // en caso de no encontrar valor imperial
+        if (!Number.isInteger(minAnterior)) {
+          let [, maxAnterior] = a.weight.metric.split("-");
+          minAnterior = maxAnterior;
+        }
+      }
+      if (isNaN(minActual)) {
+        //conseguimos el peso imperial minimo del elemento actua;
+        let [minImpActual] = b.weight.imperial.split("-");
+        //buscamos el valor imperia y lo convierte
+        minActual = parseInt(minImpActual) / 2.204;
+        //usamos el valor maximo en caso de no encontrar valor imperia;
+        if (!Number.isInteger(minActual)) {
+          let [, maxActual] = b.weight.metric.split("-");
+          minActual = maxActual;
+        }
+      } */
+
+//convertimos el sistema en caso de no econtrar
+//su propio valor
+/*       if (isNaN(maxAnterior)) {
+        let [, maxImpAnterior] = a.weight.imperial.split("-");
+        maxAnterior = parseInt(maxImpAnterior) / 2.2046;
+      }
+      if (isNaN(maxActual)) {
+        let [, maxImpActual] = b.weight.imperial.split("-");
+        maxAnterior = parseInt(maxImpActual) / 2.2046;
+      } */

@@ -1,5 +1,5 @@
 import React from "react";
-import { orderByAlphabet, cutForPaging, dogNumberForPagination } from "../action";
+import { orderByAlphabetAction, cutForPaging, dogNumberForPagination } from "../action";
 import { connect } from "react-redux";
 
 class OrderByAlphabet extends React.Component{
@@ -14,7 +14,7 @@ class OrderByAlphabet extends React.Component{
         await this.setState({
             typeOrder:value
         })
-        await this.props.orderByAlphabet(this.state.typeOrder)
+        await this.props.orderByAlphabetAction(this.state.typeOrder)
         await this.props.dogNumberForPagination(this.props.lengthDogs)
         await this.props.cutForPaging(1)
     }
@@ -34,4 +34,4 @@ const mapSateToProps = (state) => {
     }
 }
 
-export default connect(mapSateToProps,{orderByAlphabet,cutForPaging,dogNumberForPagination})(OrderByAlphabet);
+export default connect(mapSateToProps,{orderByAlphabetAction,cutForPaging,dogNumberForPagination})(OrderByAlphabet);

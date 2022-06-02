@@ -25,6 +25,9 @@ export const FILTER_BY_DB_OR_API = "FILTER_BY_DB_OR_API";
 // este sera el tipo para la accion de ordenado alfabetico
 export const ORDER_BY_ALPHABET = "ORDER_BY_ALPHABET";
 
+// tipo de accion para ordernar por eso
+export const ORDER_BY_WEIGTH = "ORDER_BY_WEIGTH";
+
 /* //modifica el estado para mostrar el componente de carga
 export const IS_LOADING = "IS_LOADING";
 

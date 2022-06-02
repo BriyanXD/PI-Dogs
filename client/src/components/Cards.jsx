@@ -7,6 +7,7 @@ import FiterTemp from "./FiterTemp";
 import Paginated from "./Paginated";
 import FilterDBorAPI from "./FilterDBorAPI";
 import OrderByAlphabet from "./OrderByAlphabet";
+import OrderByWeigth from "./OrderByWeigth";
 
 class Cards extends React.Component{
    /*  constructor(props){
@@ -28,9 +29,9 @@ class Cards extends React.Component{
                     acumulador = acumulador +element.name+","
                     return acumulador
                 },[])
-                return <Card name={dog.name} key={dog.id} createdb={this.props.createdDB} image={dog.image} temperaments={temps}/>
+                return <Card name={dog.name} key={dog.id} createdb={dog.createdDB} image={dog.image} temperaments={temps} weight={dog.weight}/>
             }else{
-                return <Card name={dog.name} key={dog.id} createdb={this.props.createdDB} image={dog.image.url} temperaments={dog.temperaments}/>
+                return <Card name={dog.name} key={dog.id} image={dog.image.url} temperaments={dog.temperaments}  weight={dog.weight}/>
             }
         })
     }
@@ -40,7 +41,7 @@ class Cards extends React.Component{
                 {/* Barra de busqueda */}
                 <SearchBar/>
                 {/* Filtros */}
-                <FiterTemp/><FilterDBorAPI/><OrderByAlphabet/>
+                <FiterTemp/><FilterDBorAPI/><OrderByAlphabet/><OrderByWeigth/>
                 {/* Se cargan las tarjeas con la informacion */}
                 {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
                 {/* Paginado */}
