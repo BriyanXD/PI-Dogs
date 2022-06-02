@@ -8,6 +8,7 @@ import {
   FILTER_BY_DB_OR_API,
   ORDER_BY_ALPHABET,
   ORDER_BY_WEIGTH,
+  SWITCH_VISIBLE_DETAIL,
 } from "../type";
 
 const initialState = {
@@ -16,6 +17,10 @@ const initialState = {
   dogs_length: 0,
   numPages: [],
   cutArrayDogs: "",
+  stateDetail: {
+    visibleDetail: false,
+    infoDetail: {},
+  },
 };
 
 function reducers(state = initialState, action) {
@@ -72,6 +77,11 @@ function reducers(state = initialState, action) {
       return {
         ...state,
         dogs: orderByWeigth(action.payload, state.dogs),
+      };
+    case SWITCH_VISIBLE_DETAIL:
+      return {
+        ...state,
+        stateDetail: action.payload,
       };
     default:
       return state;

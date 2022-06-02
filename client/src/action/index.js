@@ -8,6 +8,7 @@ import {
   FILTER_BY_DB_OR_API,
   ORDER_BY_ALPHABET,
   ORDER_BY_WEIGTH,
+  SWITCH_VISIBLE_DETAIL,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -158,5 +159,19 @@ export function ordenByWeigthtAction(orderType) {
   return {
     type: ORDER_BY_WEIGTH,
     payload: orderType,
+  };
+}
+
+export function switchVisibleDetail(boolean, race) {
+  return async function (dispatch) {
+    var response = await fetch(`http://localhost:3001/api/dogs?name=${race}`);
+    var resjson = await response.json();
+    return dispatch({
+      type: SWITCH_VISIBLE_DETAIL,
+      payload: {
+        visibleDetail: boolean,
+        infoDetail: resjson,
+      },
+    });
   };
 }

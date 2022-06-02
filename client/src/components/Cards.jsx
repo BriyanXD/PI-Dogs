@@ -8,14 +8,9 @@ import Paginated from "./Paginated";
 import FilterDBorAPI from "./FilterDBorAPI";
 import OrderByAlphabet from "./OrderByAlphabet";
 import OrderByWeigth from "./OrderByWeigth";
+import PageOfDetail from "./PageOfDetail";
 
 class Cards extends React.Component{
-   /*  constructor(props){
-        super(props);
-        this.state={
-            isLoading : false
-        }
-    } */
     async componentDidMount(){
          await this.props.getDogs()
          await this.props.dogNumberForPagination(this.props.lengthDogs)
@@ -44,6 +39,8 @@ class Cards extends React.Component{
                 <FiterTemp/><FilterDBorAPI/><OrderByAlphabet/><OrderByWeigth/>
                 {/* Se cargan las tarjeas con la informacion */}
                 {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
+                {/* Detalle de la raza */}
+                <PageOfDetail/>
                 {/* Paginado */}
                 <Paginated/>
             </main>

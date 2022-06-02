@@ -28,6 +28,9 @@ export const ORDER_BY_ALPHABET = "ORDER_BY_ALPHABET";
 // tipo de accion para ordernar por eso
 export const ORDER_BY_WEIGTH = "ORDER_BY_WEIGTH";
 
+// accion para mostrar la ventana modal de detalles de la raza
+export const SWITCH_VISIBLE_DETAIL = "SWITCH_VISIBLE_DETAIL";
+
 /* //modifica el estado para mostrar el componente de carga
 export const IS_LOADING = "IS_LOADING";
 
