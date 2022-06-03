@@ -11,21 +11,36 @@ class PageOfDetail extends React.Component{
 
 
     renderPageOfDetail = () => {
-        const {name, weight,height,temperaments,image,life_span} = this.props.infoDetail[0]
+        if(this.props.infoDetail.length > 0){
+            const {name, weight,height,temperaments,image,life_span, createdDB} = this.props.infoDetail[0]
+            var temps = ""
+
+            if(createdDB){
+                temps = temperaments.reduce((acc, cur) => {
+                    acc = acc + cur.name +","
+                    return acc
+                },"")
+            }
+
         return(
             <div>
                 <div><h1>{name}</h1></div>
                 <div>
-                    <img src={image.url} alt={name} weight={100} height={100 }/>
+                    {image.url?<img src={image.url} alt={name} weight={100} height={100 }/>:
+                    <img src={image} alt={name} weight={100} height={100 }/>}
                 </div>
                 <div>
                     <p>Altura : {height}</p>
                     <p>Peso : {weight}</p>
                     <p>Vida : {life_span}</p>
-                    <p>Temperamentos : {temperaments}</p>
+                    {!createdDB ?<p>Temperamentos : {temperaments}</p>:
+                        <p>Temperamentos: {temps}</p>
+                    }
                 </div>
             </div>
         )
+        }else{
+        }
     }
 
 

@@ -1,3 +1,4 @@
+import { combineReducers } from "redux";
 import {
   FILTER_BY_TEMPERAMENT,
   GET_DATA_API,
@@ -9,6 +10,7 @@ import {
   ORDER_BY_ALPHABET,
   ORDER_BY_WEIGTH,
   SWITCH_VISIBLE_DETAIL,
+  POST_FORM,
 } from "../type";
 
 const initialState = {
@@ -21,6 +23,7 @@ const initialState = {
     visibleDetail: false,
     infoDetail: {},
   },
+  postRace: "",
 };
 
 function reducers(state = initialState, action) {
@@ -83,6 +86,12 @@ function reducers(state = initialState, action) {
         ...state,
         stateDetail: action.payload,
       };
+    case POST_FORM: {
+      return {
+        ...state,
+        postRace: action.payload,
+      };
+    }
     default:
       return state;
   }
@@ -142,15 +151,15 @@ function orderByAlphabet(orderType, dogstate) {
 }
 
 function orderByWeigth(orderType, dogstate) {
-  let resultOrder = "";
+  /* let resultOrder = "";
 
   if (orderType === "min") {
     resultOrder = dogstate.sort((a, b) => {
       let [minAnterior, maxAnterior] = a.weight.split("-");
       let [minActual, maxActual] = b.weight.split("-");
 
-      minAnterior = parseInt(minAnterior);
-      minActual = parseInt(minActual);
+      minAnterior = parseInt(minAnterior.trim());
+      minActual = parseInt(minActual.trim());
 
       if (isNaN(minAnterior)) minAnterior = a.weight;
       if (isNaN(minActual)) minActual = b.weight;
@@ -181,7 +190,54 @@ function orderByWeigth(orderType, dogstate) {
       return 0;
     });
   }
-  return resultOrder;
+  return resultOrder; */
+  if (orderType === "min") {
+    function order(array) {
+      if (array.length < 1) return [];
+
+      let [min] = array[0].weight.split("-");
+      let pivot = min;
+      let left = [];
+      let right = [];
+      for (var i = 1; i < array.length; i++) {
+        let [min, max] = array[i].weight.split("-");
+        if (isNaN(min)) min = max;
+
+        if (parseInt(min) < parseInt(pivot)) {
+          left.push(array[i]);
+        } else {
+          right.push(array[i]);
+        }
+      }
+      return [].concat(order(left), array[0], order(right));
+    }
+    order(dogstate);
+    let result = order(dogstate);
+    return result;
+  } else if (orderType === "max") {
+    function order(array) {
+      if (array.length < 1) return [];
+
+      let [, min] = array[0].weight.split("-");
+      let pivot = min;
+      let left = [];
+      let right = [];
+      for (var i = 1; i < array.length; i++) {
+        let [min, max] = array[i].weight.split("-");
+        if (isNaN(max)) max = min;
+
+        if (parseInt(max) > parseInt(pivot)) {
+          left.push(array[i]);
+        } else {
+          right.push(array[i]);
+        }
+      }
+      return [].concat(order(left), array[0], order(right));
+    }
+    order(dogstate);
+    let result = order(dogstate);
+    return result;
+  }
 }
 
 export default reducers;

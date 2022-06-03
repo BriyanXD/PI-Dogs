@@ -110,9 +110,9 @@ async function setDog(req, res) {
       where: { name: name_temp },
     });
     await addDog.addTemperaments(temperamentDB);
-    res.status(201).send(addDog);
+    return await res.status(201).json(addDog);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 }
 

@@ -9,6 +9,7 @@ import FilterDBorAPI from "./FilterDBorAPI";
 import OrderByAlphabet from "./OrderByAlphabet";
 import OrderByWeigth from "./OrderByWeigth";
 import PageOfDetail from "./PageOfDetail";
+import FormOfCreation from "./FormOfCreation";
 
 class Cards extends React.Component{
     async componentDidMount(){
@@ -41,6 +42,8 @@ class Cards extends React.Component{
                 {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
                 {/* Detalle de la raza */}
                 <PageOfDetail/>
+                {/* Formulario de creacion */}
+                <FormOfCreation/>
                 {/* Paginado */}
                 <Paginated/>
             </main>

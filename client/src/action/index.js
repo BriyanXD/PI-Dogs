@@ -9,6 +9,7 @@ import {
   ORDER_BY_ALPHABET,
   ORDER_BY_WEIGTH,
   SWITCH_VISIBLE_DETAIL,
+  POST_FORM,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -172,6 +173,23 @@ export function switchVisibleDetail(boolean, race) {
         visibleDetail: boolean,
         infoDetail: resjson,
       },
+    });
+  };
+}
+
+export function postForm(objectRace) {
+  return async function (dispatch) {
+    var response = await fetch("http://localhost:3001/api/dogs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(objectRace),
+    });
+    var responseJson = await response.json();
+    return dispatch({
+      type: POST_FORM,
+      payload: responseJson,
     });
   };
 }
