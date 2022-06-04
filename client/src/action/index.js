@@ -62,7 +62,8 @@ export function filterByTemperament(temp) {
         let resultFilter = result.filter((element) => {
           if (element.createdDB) {
             if (!element.temperaments) return null;
-            if (element.temperaments.includes(temp)) {
+            let temps = element.temperaments.map((temp) => temp.name);
+            if (temps.includes(temp)) {
               return element;
             }
           } else {

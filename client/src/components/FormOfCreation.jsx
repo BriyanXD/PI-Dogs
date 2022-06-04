@@ -125,6 +125,15 @@ class FormOfCreation extends React.Component{
         })
         }
 
+    //mostrar los errors en la pantalla
+    viewErrors = () => {
+        for (let property in this.state.messageError){
+            if(this.state.messageError[property]){
+                return <p>{this.state.messageError[property]}</p>
+            }
+        }
+    }
+
     //maneja el envio del form
     handlerSubmitForm = async(e) => {
        /*  let submit = e.target.submitBtn.name
@@ -167,7 +176,7 @@ class FormOfCreation extends React.Component{
                 e.preventDefault()
                 this.handlerSubmitForm(e)
             }}>
-                {/* {this.state.messageError} */}
+                {this.viewErrors()}
                 <br />
                 <input type="text" name='name'  placeholder='Raza' value={this.state.name} onChange={(e)=>this.handlerChange(e)} />
 
