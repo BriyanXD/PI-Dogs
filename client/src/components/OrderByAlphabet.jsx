@@ -1,6 +1,9 @@
 import React from "react";
 import { orderByAlphabetAction, cutForPaging, dogNumberForPagination } from "../action";
 import { connect } from "react-redux";
+import Style from "../css/FilterTemp.module.css"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faArrowDownAZ} from "@fortawesome/free-solid-svg-icons"
 
 class OrderByAlphabet extends React.Component{
     constructor(props){
@@ -20,10 +23,13 @@ class OrderByAlphabet extends React.Component{
     }
     render(){
         return(
-            <select name="OrderByAlphabet" onChange={(e) => this.handlerChange(e.target.value)}>
-                <option value="AaZz">Aa - Zz</option>
-                <option value="ZzAa">Zz - Aa</option>
+            <div className={Style.contenedor}>
+            <FontAwesomeIcon icon={faArrowDownAZ} className={Style.icon}/>
+            <select className={Style.select} name="OrderByAlphabet" onChange={(e) => this.handlerChange(e.target.value)}>
+                <option className={Style.option} value="AaZz">Aa - Zz</option>
+                <option className={Style.option} value="ZzAa">Zz - Aa</option>
             </select>
+            </div>
         )
     }
 }

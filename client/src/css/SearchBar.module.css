@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Poppins:wght@300&display=swap');
+
+.search{
+    width: 500px;
+    height: 35px;
+    padding-left: 50px;
+    position: relative;
+    border-radius: 5px;
+    outline: none;
+    color: rgb(74, 83, 95);
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+}
+
+.icon{
+    position: absolute;
+    top: 20px;
+    left: 150px;
+    height: 25px;
+    z-index: 1;
+    color: rgb(74, 83, 95);
+}
+
+.search::placeholder{
+    color: rgb(74, 83, 95);
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+}

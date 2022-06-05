@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import {
   FILTER_BY_TEMPERAMENT,
   GET_DATA_API,
@@ -11,6 +10,7 @@ import {
   ORDER_BY_WEIGTH,
   SWITCH_VISIBLE_DETAIL,
   POST_FORM,
+  SWITCH_VISIBLE_CREATION,
 } from "../type";
 
 const initialState = {
@@ -19,6 +19,7 @@ const initialState = {
   dogs_length: 0,
   numPages: [],
   cutArrayDogs: "",
+  stateCreation: false,
   stateDetail: {
     visibleDetail: false,
     infoDetail: {},
@@ -92,6 +93,11 @@ function reducers(state = initialState, action) {
         postRace: action.payload,
       };
     }
+    case SWITCH_VISIBLE_CREATION:
+      return {
+        ...state,
+        stateCreation: action.payload,
+      };
     default:
       return state;
   }

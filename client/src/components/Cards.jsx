@@ -35,6 +35,7 @@ class Cards extends React.Component{
                 {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
             </main>
 {/*             <Footer/> */}
+            <Footer/>
             </>
         )
     }

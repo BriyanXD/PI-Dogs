@@ -1,0 +1,32 @@
+.header{
+    background-color: rgb(74, 83, 95);
+    height: 65px;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 7px 9px rgb(160, 188, 253);
+    z-index: 10;
+}
+
+.icon{
+    color: white;
+    width: 50px;
+    height: 65px;
+    padding-left: 20px;
+    padding-right: 70px;
+}
+.elementos{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.new{
+    color: white;
+    width: 35px;
+    height: 40px;
+    padding-left: 50px;
+}
+.btn{
+    background-color: rgba(74, 83, 95,.0);
+    border: 0;
+    cursor: pointer;
+}

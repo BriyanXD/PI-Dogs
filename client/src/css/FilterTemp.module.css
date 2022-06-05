@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Poppins:wght@300&display=swap');
+
+.contenedor{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding-left: 10px;
+}
+
+.select{
+    outline: none;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    height: 40px;
+    cursor: pointer;
+}
+
+.icon{
+    color: white;
+    height: 25px;
+}
+
+.option{
+    background-color: rgb(219, 230, 255);
+}
+
+select::-webkit-scrollbar{
+    width: 7px;
+}
+select::-webkit-scrollbar-thumb{
+    background-color: rgb(125, 150, 210);
+    border-radius: 5px;
+}

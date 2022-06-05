@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux"
 import {getTemperaments, filterByTemperament, dogNumberForPagination, cutForPaging} from "../action"
+import Style from "../css/FilterTemp.module.css"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faFilter} from "@fortawesome/free-solid-svg-icons"
 
 //el estado filter pendiente
 class FilterTemp extends React.Component{
@@ -29,17 +32,20 @@ async selectOption(name){
 //mapeamos el array que llega de redux para agregarlo al componenete
 chargeTemps(){
     return this.props.temps.map(temp => {
-       return <option value={temp.name} key={temp.id}>{temp.name}</option>
+       return <option className={Style.option} value={temp.name} key={temp.id}>{temp.name}</option>
     })
 }
 
 //renderizamos el componente
 render(){
     return(
-        <select name="filterTemp" onChange={(e)=>{this.selectOption(e.target.value)}}>
-            <option value="all">All</option>
+        <div className={Style.contenedor}>
+        <FontAwesomeIcon icon={faFilter} className={Style.icon}/>
+        <select className={Style.select} name="filterTemp" onChange={(e)=>{this.selectOption(e.target.value)}}>
+            <option className={Style.option} value="all"> Temperaments all </option>
             {this.chargeTemps()}
         </select>
+        </div>
     )
 }
 }

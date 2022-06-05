@@ -31,6 +31,9 @@ export const ORDER_BY_WEIGTH = "ORDER_BY_WEIGTH";
 // accion para mostrar la ventana modal de detalles de la raza
 export const SWITCH_VISIBLE_DETAIL = "SWITCH_VISIBLE_DETAIL";
 
+// accion para mostrar la ventana modal de detalles de la raza
+export const SWITCH_VISIBLE_CREATION = "SWITCH_VISIBLE_CREATION";
+
 //accion para enviar el formulario
 export const POST_FORM = "POST_FORM";
 /* //modifica el estado para mostrar el componente de carga

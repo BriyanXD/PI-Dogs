@@ -10,6 +10,7 @@ import {
   ORDER_BY_WEIGTH,
   SWITCH_VISIBLE_DETAIL,
   POST_FORM,
+  SWITCH_VISIBLE_CREATION,
 } from "../type";
 
 // cargamos todas las razas al estado de redux
@@ -185,6 +186,13 @@ export function switchVisibleDetail(boolean, race) {
         },
       });
     }
+  };
+}
+
+export function switchVisibleCreation(boolean) {
+  return {
+    type: SWITCH_VISIBLE_CREATION,
+    payload: boolean,
   };
 }
 

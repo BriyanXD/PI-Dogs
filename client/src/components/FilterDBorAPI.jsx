@@ -1,6 +1,9 @@
 import React from "react";
 import { filterByDBorAPI, cutForPaging, dogNumberForPagination} from "../action";
 import { connect } from "react-redux"
+import Style from "../css/FilterTemp.module.css"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faFilter} from "@fortawesome/free-solid-svg-icons"
 
 
 class FilterDBorAPI extends React.Component{
@@ -21,11 +24,14 @@ class FilterDBorAPI extends React.Component{
     }
     render(){
         return (
-            <select name="filterDBorAPI" onChange={(e) => {this.handleChange(e.target.value)}}>
-                <option value="all">All</option>
-                <option value="api">API</option>
-                <option value="db">DB</option>
+            <div className={Style.contenedor}>
+            <FontAwesomeIcon icon={faFilter} className={Style.icon}/>
+            <select className={Style.select} name="filterDBorAPI" onChange={(e) => {this.handleChange(e.target.value)}}>
+                <option className={Style.option} value="all">By all creations</option>
+                <option className={Style.option} value="api">API</option>
+                <option className={Style.option} value="db">DB</option>
             </select>
+            </div>
         )
     }
 }

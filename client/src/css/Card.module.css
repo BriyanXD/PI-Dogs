@@ -9,6 +9,7 @@
     position: relative;
     z-index: 1;
     box-shadow: 1px 7px 4px rgb(160, 188, 253);
+    cursor: pointer;
 }
 .text::-webkit-scrollbar{
     width: 7px;

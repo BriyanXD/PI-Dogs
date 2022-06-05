@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ordenByWeigthtAction, dogNumberForPagination, cutForPaging } from '../action';
+import Style from "../css/FilterTemp.module.css"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faArrowDownShortWide} from "@fortawesome/free-solid-svg-icons"
 
 class OrderByWeigth extends React.Component{
     constructor(props){
@@ -21,13 +24,13 @@ class OrderByWeigth extends React.Component{
 
     render(){
         return(
-           <>
-           {/* <label htmlFor="OrderByWeigth">Peso</label> */}
-            <select name="OrderByWeigth" onChange={(e) => this.handlerChange(e.target.value)}>
-                <option value="min">min</option>
-                <option value="max">max</option>
-            </select>
-           </>
+            <div className={Style.contenedor}>
+                <FontAwesomeIcon icon={faArrowDownShortWide} className={Style.icon}/>
+                <select className={Style.select} name="OrderByWeigth" onChange={(e) => this.handlerChange(e.target.value)}>
+                    <option className={Style.option} value="min">min</option>
+                    <option className={Style.option} value="max">max</option>
+                </select>
+            </div>
         )
     }
 }
