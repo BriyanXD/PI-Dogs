@@ -4,6 +4,8 @@ import { getDogs,dogNumberForPagination,cutForPaging } from "../action";
 import Card from "./Card"
 import Footer from "./Footer";
 import Header from "./Header";
+import Error404 from "./Error404";
+import Loading from "./Loading"
 import Style from "../css/Cards.module.css"
 
 class Cards extends React.Component{
@@ -32,7 +34,7 @@ class Cards extends React.Component{
             <Header/>
              <main className={Style.contenedorPrincipal}>
                 {/* Se cargan las tarjeas con la informacion */}
-                {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
+                {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <Error404/> : <Loading/>}
             </main>
 {/*             <Footer/> */}
             <Footer/>

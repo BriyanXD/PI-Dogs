@@ -1,6 +1,7 @@
 import React from "react";
 import { cutForPaging } from "../action";
 import { connect } from "react-redux";
+import Style from "../css/Page.module.css"
 
 
 class Page extends React.Component{
@@ -11,7 +12,7 @@ class Page extends React.Component{
 
     render(){
         return(
-            <button onClick={() => {this.handlerClick(this.props.value)}}>{this.props.value}</button>
+            <button className={Style.pagina} onClick={() => {this.handlerClick(this.props.value)}}>{this.props.value}</button>
     )
 }
 

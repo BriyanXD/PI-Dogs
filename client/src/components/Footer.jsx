@@ -1,6 +1,7 @@
 import Paginated from "./Paginated";
 import FormOfCreation from "./FormOfCreation";
 import React from 'react';
+import Style from "../css/Footer.module.css"
 
 
 class Footer extends React.Component{
@@ -8,7 +9,7 @@ class Footer extends React.Component{
 
 render(){
     return(
-        <footer>
+        <footer className={Style.footer}>
               {/* Detalle de la raza */}
                  <FormOfCreation/>
                 {/* Paginado */}

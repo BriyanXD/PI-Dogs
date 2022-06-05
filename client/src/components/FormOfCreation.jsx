@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { postForm, getDogs, cutForPaging} from '../action';
+import { postForm, getDogs, cutForPaging, dogNumberForPagination} from '../action';
 import Style from "../css/FormOfCreation.module.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faXmark, faTrashCan} from "@fortawesome/free-solid-svg-icons"
@@ -148,7 +148,10 @@ class FormOfCreation extends React.Component{
        /*  let submit = e.target.submitBtn.name
         this.handlerChange(submit) */
         const {name ,life_span ,weight_min ,weight_max , height_min , height_max , temperaments} = this.state.messageError
-         if(name !== "" || life_span !== "" ||weight_min !== "" ||weight_max !== "" || height_min !== "" || height_max !== "" || temperaments !== "" ){
+        if(await this.props.dogs.find(dog => dog.name === this.state.name)){
+            await this.handlerError(e.target.name,`${this.state.name} Ya existe`)
+            return
+        }else if(name !== "" || life_span !== "" ||weight_min !== "" ||weight_max !== "" || height_min !== "" || height_max !== "" || temperaments !== "" ){
             this.handlerError("temperaments","Verfique que la informacion del formulario sera correcta")
             return
         }else if(this.state.name === "" || this.state.life_span === "" || this.state.weight_min === "" || this.state.weight_max === "" || this.state.height_min === "" || this.state.height_max === "" || this.state.temperaments.length < 1){
@@ -165,9 +168,11 @@ class FormOfCreation extends React.Component{
                     life_span: this.state.life_span.toString(),
                     name_temp: this.state.temperaments
                 }
-                console.log(obj)
                 await this.props.postForm(obj)
                 await this.props.getDogs()
+                await this.props.switchVisibleCreation(false)
+                await this.props.dogNumberForPagination(this.props.lengthDogs)
+                await this.props.cutForPaging((this.props.lengthDogs / 8))
             }else{
                 const obj = {
                     name:this.state.name.toString(),
@@ -177,10 +182,23 @@ class FormOfCreation extends React.Component{
                     life_span: this.state.life_span.toString(),
                     name_temp: this.state.temperaments
                 }
-                console.log(obj)
                 await this.props.postForm(obj)
                 await this.props.getDogs()
+                await this.props.switchVisibleCreation(false)
+                await this.props.dogNumberForPagination(this.props.lengthDogs)
+                await this.props.cutForPaging((this.props.lengthDogs / 8))
             }
+            await this.setState({
+                name:"",
+                image:"",
+                weight_min:"",
+                weight_max:"",
+                height_min:"",
+                height_max:"",
+                life_span:"",
+                temperaments:[],
+                errorSend:"",
+            })
         }
     }
 
@@ -250,9 +268,10 @@ const mapSateToProps = (state) => {
     return{
         temperaments_api: state.temperaments,
         stateCreation: state.stateCreation,
-        dogs: state.dogs
+        dogs: state.dogs,
+        lengthDogs: state.dogs_length
     }
 
 }
-export default connect(mapSateToProps,{postForm, switchVisibleCreation, getDogs})(FormOfCreation)
+export default connect(mapSateToProps,{postForm, switchVisibleCreation, getDogs, cutForPaging, dogNumberForPagination})(FormOfCreation)
 
