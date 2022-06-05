@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { switchVisibleDetail } from '../action';
+import Style from "../css/PageOfDetail.module.css"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faXmark} from "@fortawesome/free-solid-svg-icons"
+
 
 
 class PageOfDetail extends React.Component{
@@ -23,19 +27,23 @@ class PageOfDetail extends React.Component{
             }
 
         return(
-            <div>
-                <div><h1>{name}</h1></div>
-                <div>
-                    {image.url?<img src={image.url} alt={name} weight={100} height={100 }/>:
-                    <img src={image} alt={name} weight={100} height={100 }/>}
-                </div>
-                <div>
+            <div className={Style.contenedorGeneral}>
+
+                <button className={Style.close} onClick={this.handlerClick}><FontAwesomeIcon  icon={faXmark}/></button>
+                <div className={Style.contenedorInfo}>
+                <div className={Style.title}><h1>{name}</h1></div>
+                <div className={Style.divInfo}>
+                <div className={Style.divDatos}>
                     <p>Altura : {height}</p>
                     <p>Peso : {weight}</p>
                     <p>Vida : {life_span}</p>
-                    {!createdDB ?<p>Temperamentos : {temperaments}</p>:
-                        <p>Temperamentos: {temps}</p>
+                    {!createdDB ?<p  >Temperamentos : {temperaments}</p>:
+                    <p>Temperamentos: {temps}</p>
                     }
+                </div>
+                    {image.url?<img src={image.url} alt={name} className={Style.image}/>:
+                    <img src={image} alt={name} className={Style.image}/>}
+                </div>
                 </div>
             </div>
         )
@@ -46,9 +54,9 @@ class PageOfDetail extends React.Component{
 
     render(){
         return(
-            <h1>
-                {this.renderPageOfDetail()}
-            </h1>
+            <>
+            {this.props.visibleDetail && this.renderPageOfDetail()}
+            </>
         )
     }
 }

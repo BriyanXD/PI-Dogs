@@ -2,14 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { getDogs,dogNumberForPagination,cutForPaging } from "../action";
 import Card from "./Card"
-import SearchBar from "./SearchBar";
-import FiterTemp from "./FiterTemp";
-import Paginated from "./Paginated";
-import FilterDBorAPI from "./FilterDBorAPI";
-import OrderByAlphabet from "./OrderByAlphabet";
-import OrderByWeigth from "./OrderByWeigth";
-import PageOfDetail from "./PageOfDetail";
-import FormOfCreation from "./FormOfCreation";
+import Footer from "./Footer";
+import Header from "./Header";
+import Style from "../css/Cards.module.css"
 
 class Cards extends React.Component{
     async componentDidMount(){
@@ -33,20 +28,14 @@ class Cards extends React.Component{
     }
     render(){
         return(
-            <main>
-                {/* Barra de busqueda */}
-                <SearchBar/>
-                {/* Filtros */}
-                <FiterTemp/><FilterDBorAPI/><OrderByAlphabet/><OrderByWeigth/>
+            <>
+            <Header/>
+             <main className={Style.contenedorPrincipal}>
                 {/* Se cargan las tarjeas con la informacion */}
                 {this.props.cutArrayDogs.length > 0 && !this.props.getInfo.error?this.renderDogs() : this.props.getInfo.error ? <h2>Error 404</h2> : <h2>Loading</h2>}
-                {/* Detalle de la raza */}
-                <PageOfDetail/>
-                {/* Formulario de creacion */}
-                <FormOfCreation/>
-                {/* Paginado */}
-                <Paginated/>
             </main>
+{/*             <Footer/> */}
+            </>
         )
     }
 }

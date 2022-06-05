@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
+.contenedorPrincipal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color:#00c9df;
+    height: 100vh;
+}
+
+.contenedorImage{
+    width: 400px;
+    height: 600px;
+}
+
+.imagen{
+    padding-top: 80px;
+}
+.title{
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: 72px;
+    color: white;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    text-align: start;
+}
+.text{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size: 16px;
+    margin-bottom: 70px;
+    color: white;
+    text-align: end;
+}
+.btn{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size: 16px;
+    background-color: rgb(17, 255, 17);
+    border-radius: 50px;
+    border: none;
+    width: 200px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btn:hover{
+    background-color: rgb(84, 251, 84);
+}
+.btn:active{
+    background-color: rgb(1, 167, 1);
+}
