@@ -6,10 +6,13 @@ import PageOfDetail from "./PageOfDetail";
 import SearchBar from "./SearchBar";
 import FiterTemp from "./FiterTemp";
 import Style from "../css/Header.module.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faFileCirclePlus,faDog} from "@fortawesome/free-solid-svg-icons"
+/* import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faFileCirclePlus,faDog} from "@fortawesome/free-solid-svg-icons" */
 import { switchVisibleCreation } from '../action';
 import { connect } from 'react-redux';
+
+import dog from "../assets/img/dog.png"
+import add from "../assets/img/more.png"
 
 class Header extends React.Component{
 
@@ -20,7 +23,8 @@ handlerClick = () => {
 render(){
     return(
         <header className={Style.header}>
-                <FontAwesomeIcon icon={faDog} className={Style.icon}/>
+                {/* <FontAwesomeIcon icon={faDog} className={Style.icon}/> */}
+                <img src={dog} alt="dog" className={Style.icon}/>
                 {/* Barra de busqueda */}
             <div className={Style.elementos}>
                  <SearchBar/>
@@ -28,7 +32,7 @@ render(){
                 <FiterTemp/><FilterDBorAPI/><OrderByAlphabet/><OrderByWeigth/>
                 {/* Pagina de detalle */}
                 <PageOfDetail/>
-                <button className={Style.btn} onClick={this.handlerClick} ><FontAwesomeIcon icon={faFileCirclePlus} className={Style.new}/></button>
+                <button className={Style.btn} onClick={this.handlerClick} ><img src={add} alt="add" className={Style.new} /></button>
             </div>
         </header>
     )
@@ -37,3 +41,6 @@ render(){
 }
 
 export default connect(null,{switchVisibleCreation})(Header)
+
+
+//<FontAwesomeIcon icon={faFileCirclePlus} className={Style.new}/>

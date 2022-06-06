@@ -1,7 +1,17 @@
 .contenedor{
-    height: 80vh;
-    width: 90vw;
+    margin-left: 15px;
+    height: 85vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.imagen{
+    width: 80vh;
+}
+
+@media (max-width:1280px){
+    .imagen{
+        width: 40vh;
+    }
 }

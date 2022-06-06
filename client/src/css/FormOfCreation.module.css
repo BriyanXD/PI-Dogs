@@ -106,7 +106,7 @@
     background-color: rgb(219, 230, 255);
 }
 .minmax{
-    width: 50%;
+    width: 45%;
     display: flex;
     justify-content: space-between;
     padding: 0px 20px;
@@ -143,4 +143,31 @@
 }
 .tempsAdds:hover{
     background-color: rgb(105, 170, 255);
+}
+
+@media( max-width: 1280px){
+    .input{
+        width: 60%;
+    }
+    .minmax{
+        width: 50%;
+    }
+}
+
+@media( max-width: 800px){
+    .input{
+        width: 80%;
+    }
+    .minmax{
+        width: 70%;
+    }
+    .contenedorInfo{
+        width: 95vw;
+        height: 80vh;
+    }
+    .close{
+        top: 5%;
+        right: 43%;
+        background-color: rgba(222,222,222,.9);
+    }
 }

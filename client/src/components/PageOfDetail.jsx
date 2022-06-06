@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { switchVisibleDetail } from '../action';
 import Style from "../css/PageOfDetail.module.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faXmark} from "@fortawesome/free-solid-svg-icons"
+/* import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faXmark} from "@fortawesome/free-solid-svg-icons" */
+import close from "../assets/img/close.png"
 
 
 
@@ -15,8 +16,8 @@ class PageOfDetail extends React.Component{
 
 
     renderPageOfDetail = () => {
-        if(this.props.infoDetail.length > 0){
-            const {name, weight,height,temperaments,image,life_span, createdDB} = this.props.infoDetail[0]
+        if(this.props.infoDetail){
+            const {name, weight,height,temperaments,image,life_span, createdDB} = this.props.infoDetail
             var temps = ""
 
             if(createdDB){
@@ -29,7 +30,7 @@ class PageOfDetail extends React.Component{
         return(
             <div className={Style.contenedorGeneral}>
 
-                <button className={Style.close} onClick={this.handlerClick}><FontAwesomeIcon  icon={faXmark}/></button>
+                <button className={Style.close} onClick={this.handlerClick}><img src={close} alt="close" weigh={15} height={15}/></button>
                 <div className={Style.contenedorInfo}>
                 <div className={Style.title}><h1>{name}</h1></div>
                 <div className={Style.divInfo}>
@@ -55,7 +56,7 @@ class PageOfDetail extends React.Component{
     render(){
         return(
             <>
-            {this.props.visibleDetail && this.renderPageOfDetail()}
+            {this.props.visibleDetail ? this.renderPageOfDetail() : <></>}
             </>
         )
     }

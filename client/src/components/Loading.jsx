@@ -6,7 +6,7 @@ class Error404 extends React.Component{
     render(){
         return(
             <div className={Style.contenedor}>
-                <img src={image} alt='Loading' />
+                <img className={Style.imagen} src={image} alt='Loading' />
             </div>
         )
     }

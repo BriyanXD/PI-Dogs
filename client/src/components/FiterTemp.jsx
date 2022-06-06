@@ -2,8 +2,9 @@ import React from 'react';
 import {connect} from "react-redux"
 import {getTemperaments, filterByTemperament, dogNumberForPagination, cutForPaging} from "../action"
 import Style from "../css/FilterTemp.module.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faFilter} from "@fortawesome/free-solid-svg-icons"
+/* import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faFilter} from "@fortawesome/free-solid-svg-icons" */
+import filter from "../assets/img/filter.png"
 
 //el estado filter pendiente
 class FilterTemp extends React.Component{
@@ -40,7 +41,8 @@ chargeTemps(){
 render(){
     return(
         <div className={Style.contenedor}>
-        <FontAwesomeIcon icon={faFilter} className={Style.icon}/>
+        <img src={filter} alt="filter" className={Style.icon} />
+        {/* <FontAwesomeIcon icon={faFilter} className={Style.icon}/> */}
         <select className={Style.select} name="filterTemp" onChange={(e)=>{this.selectOption(e.target.value)}}>
             <option className={Style.option} value="all"> Temperaments all </option>
             {this.chargeTemps()}

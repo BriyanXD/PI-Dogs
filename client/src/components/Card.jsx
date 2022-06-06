@@ -5,7 +5,7 @@ import Style from "../css/Card.module.css"
 
 class Card extends React.Component{
     handlerClick = async () => {
-        await this.props.switchVisibleDetail(true, this.props.name)
+        await this.props.switchVisibleDetail(true, this.props.id)
     }
 
     render(){

@@ -22,9 +22,9 @@ class Cards extends React.Component{
                     acumulador = acumulador +element.name+","
                     return acumulador
                 },[])
-                return <Card name={dog.name} key={dog.id} createdb={dog.createdDB} image={dog.image} temperaments={temps} weight={dog.weight}/>
+                return <Card id={dog.id} name={dog.name} key={dog.id} createdb={dog.createdDB} image={dog.image} temperaments={temps} weight={dog.weight}/>
             }else{
-                return <Card name={dog.name} key={dog.id} image={dog.image.url} temperaments={dog.temperaments}  weight={dog.weight}/>
+                return <Card id={dog.id} name={dog.name} key={dog.id} image={dog.image.url} temperaments={dog.temperaments}  weight={dog.weight}/>
             }
         })
     }

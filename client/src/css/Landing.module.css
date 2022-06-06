@@ -6,6 +6,7 @@
     justify-content: space-evenly;
     background-color:#00c9df;
     height: 100vh;
+    flex-wrap: wrap;
 }
 
 .contenedorImage{
@@ -15,6 +16,9 @@
 
 .imagen{
     padding-top: 80px;
+}
+.icon{
+    width: 60px;
 }
 .title{
     font-family: 'Akaya Telivigala', cursive;
@@ -47,4 +51,10 @@
 }
 .btn:active{
     background-color: rgb(1, 167, 1);
+}
+
+@media (min-width:1280px){
+    .contenedorPrincipal{
+        flex-direction: column-reverse;
+    }
 }

@@ -165,11 +165,14 @@ export function ordenByWeigthtAction(orderType) {
   };
 }
 
-export function switchVisibleDetail(boolean, race) {
+export function switchVisibleDetail(boolean, id) {
   return async function (dispatch) {
-    if (race) {
-      var response = await fetch(`http://localhost:3001/api/dogs?name=${race}`);
+    if (id) {
+      var response = await fetch(`http://localhost:3001/api/dogs/${id}`);
       var resjson = await response.json();
+      console.log(resjson);
+      console.log(boolean);
+      console.log(id);
       return dispatch({
         type: SWITCH_VISIBLE_DETAIL,
         payload: {

@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { postForm, getDogs, cutForPaging, dogNumberForPagination} from '../action';
 import Style from "../css/FormOfCreation.module.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faXmark, faTrashCan} from "@fortawesome/free-solid-svg-icons"
+/* import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faXmark, faTrashCan} from "@fortawesome/free-solid-svg-icons" */
 import { switchVisibleCreation } from '../action';
+import trash from "../assets/img/trash.png"
+import close from "../assets/img/close.png"
 
 
 class FormOfCreation extends React.Component{
@@ -20,6 +22,7 @@ class FormOfCreation extends React.Component{
             life_span:"",
             temperaments:[],
             errorSend:"",
+            enableButtonSend:false,
 
             messageError:{
 /*              name:"",
@@ -58,9 +61,14 @@ class FormOfCreation extends React.Component{
          // Validaciones para el campo de name
          if(e.target.name === "name"){
             this.handlerError("temperaments")
-            if(this.state.name.match(/\d/g))this.handlerError(e.target.name,"Nombre solo puede tener letras y espacios")
-            else if(this.state.name.match(/[^\w\s]/g))this.handlerError(e.target.name,"Nombre no puede tener simbolos")
-            else if(this.props.dogs.find(dog => dog.name === this.state.name))this.handlerError(e.target.name,`${this.state.name} Ya existe`)
+            if(this.props.dogs.error)await this.props.getDogs()
+            else if(this.state.name.match(/\d/g))this.handlerError(e.target.name,"Nombre solo puede tener letras y espacios")
+            else if(this.state.name.match(/[^\w\s]/g)){
+                this.handlerError(e.target.name,"Nombre no puede tener simbolos")
+            }
+            else if(this.props.dogs.find(dog => dog.name === this.state.name)){
+                this.handlerError(e.target.name,`${this.state.name} Ya existe`)
+            }
             else this.handlerError(e.target.name)
          }
          // validacion para el campo image
@@ -147,6 +155,7 @@ class FormOfCreation extends React.Component{
     handlerSubmitForm = async(e) => {
        /*  let submit = e.target.submitBtn.name
         this.handlerChange(submit) */
+        await this.props.getDogs()
         const {name ,life_span ,weight_min ,weight_max , height_min , height_max , temperaments} = this.state.messageError
         if(await this.props.dogs.find(dog => dog.name === this.state.name)){
             await this.handlerError(e.target.name,`${this.state.name} Ya existe`)
@@ -159,8 +168,11 @@ class FormOfCreation extends React.Component{
             return
         }
         else{
-            console.log("enviando")
             if(!this.state.image){
+                this.setState({
+                    enableButtonSend:true
+                })
+                await this.props.switchVisibleCreation(false)
              const obj ={
                     name:this.state.name.toString(),
                     weight:this.state.weight_min + " - " + this.state.weight_max,
@@ -170,7 +182,6 @@ class FormOfCreation extends React.Component{
                 }
                 await this.props.postForm(obj)
                 await this.props.getDogs()
-                await this.props.switchVisibleCreation(false)
                 await this.props.dogNumberForPagination(this.props.lengthDogs)
                 await this.props.cutForPaging((this.props.lengthDogs / 8))
             }else{
@@ -184,7 +195,6 @@ class FormOfCreation extends React.Component{
                 }
                 await this.props.postForm(obj)
                 await this.props.getDogs()
-                await this.props.switchVisibleCreation(false)
                 await this.props.dogNumberForPagination(this.props.lengthDogs)
                 await this.props.cutForPaging((this.props.lengthDogs / 8))
             }
@@ -198,6 +208,7 @@ class FormOfCreation extends React.Component{
                 life_span:"",
                 temperaments:[],
                 errorSend:"",
+                enableButtonSend:false,
             })
         }
     }
@@ -215,7 +226,7 @@ class FormOfCreation extends React.Component{
                     this.handlerSubmitForm(e)
                 }} className={Style.form}>
                     <h1 className={Style.title} >FORM OF CREATION</h1>
-                    <button className={Style.close} onClick={this.handlerClose}><FontAwesomeIcon  icon={faXmark}/></button>
+                    <button className={Style.close} onClick={this.handlerClose}><img src={close} alt="close" weigh={15} height={15}/></button>
                     {this.viewErrors()}
                     <br />
                     <input className={Style.input} type="text" name='name'  placeholder='Raza' value={this.state.name} onChange={(e)=>this.handlerChange(e)} />
@@ -248,13 +259,13 @@ class FormOfCreation extends React.Component{
                     <div className={Style.divtemperamentos}>
                         Temperamentos : {this.state.temperaments.length > 0 ?
                         this.state.temperaments.map(temp => {
-                            return <button className={Style.tempsAdds} key={temp} value={temp} onClick={(e) => this.handlerTempDelete(e)}> {temp}  <FontAwesomeIcon icon={faTrashCan}/> </button>
+                            return <button className={Style.tempsAdds} key={temp} value={temp} onClick={(e) => this.handlerTempDelete(e)}> {temp}  <img src={trash} alt="trash" /> </button>
                         }
                         ): <></>
                     }
                     </div>
 
-                    <input className={Style.send} type="submit" value="Guardar" name='submitBtn'/>
+                    <input className={Style.send} type="submit" value="Guardar" name='submitBtn' disabled={this.state.enableButtonSend}/>
 
                 </form>
                  </div>

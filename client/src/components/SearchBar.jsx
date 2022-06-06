@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { searchDog } from "../action";
 import { dogNumberForPagination, cutForPaging} from "../action";
 import Style from "../css/SearchBar.module.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons"
+import search from "../assets/img/search.png"
+/* import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons" */
 
 
 class SearchBar extends React.Component{
@@ -22,8 +23,9 @@ class SearchBar extends React.Component{
     }
     render(){
         return(
-            <div>
-                <FontAwesomeIcon icon={faMagnifyingGlass} className={Style.icon} />
+            <div className={Style.contain}>
+               {/*  <FontAwesomeIcon icon={faMagnifyingGlass} className={Style.icon} /> */}\
+               <img src={search} alt="search" className={Style.icon} />
                 <input className={Style.search} type="text" onChange={(e)=> {this.findRace(e.target.value)}} placeholder="Buscar por raza..."/>
             </div>
         )

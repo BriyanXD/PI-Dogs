@@ -2,15 +2,16 @@ import React from "react";
 import {Link} from "react-router-dom"
 import Style from "../css/Landing.module.css"
 import image from "../assets/img/dog-landing.svg"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faDog} from '@fortawesome/free-solid-svg-icons'
+import logo from "../assets/img/perro.png"
+/* import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faDog} from '@fortawesome/free-solid-svg-icons' */
 
 class Landing extends React.Component{
     render(){
         return(
             <div className={Style.contenedorPrincipal}>
                 <div>
-                <p className={Style.title}><FontAwesomeIcon icon={faDog} /> DOG API</p>
+                <p className={Style.title}><img className={Style.icon} src={logo} alt="icon" /> DOG API</p>
 
                 <p className={Style.text}>
                     Esta es una aplicacion que muesta una serie
@@ -31,3 +32,5 @@ class Landing extends React.Component{
 }
 
 export default Landing;
+
+//<FontAwesomeIcon icon={faDog} />

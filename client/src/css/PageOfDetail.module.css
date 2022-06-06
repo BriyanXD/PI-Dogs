@@ -69,3 +69,26 @@
     border-radius: 5px;
     box-shadow: 0px 1px 9px rgb(160, 188, 253);
 }
+
+@media (max-width: 800px){
+    .contenedorInfo{
+        overflow: auto;
+    }
+    .divInfo{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 10px;
+    }
+    .divDatos{
+        align-items: center;
+        width: 80%;
+    }
+    .close{
+        top: 5%;
+        right: 43%;
+        background-color: rgb(106, 106, 106);
+        color: rgb(255, 255, 255);
+    }
+}

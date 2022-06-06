@@ -14,10 +14,13 @@
     height: 40px;
     cursor: pointer;
 }
-
 .icon{
     color: white;
     height: 25px;
+    transition: 0.7s;
+}
+.icon:hover{
+    color: rgb(0, 255, 0);
 }
 
 .option{
@@ -30,4 +33,16 @@ select::-webkit-scrollbar{
 select::-webkit-scrollbar-thumb{
     background-color: rgb(125, 150, 210);
     border-radius: 5px;
+}
+
+@media (max-width:1280px){
+    .contenedor{
+        width: 40vh;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 5px;
+    }
+    .select{
+        width: 30vh;
+    }
 }
