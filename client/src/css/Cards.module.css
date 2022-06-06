@@ -1,10 +1,9 @@
 .contenedorPrincipal{
-    background-color: rgb(219, 230, 255);
+    background-color: #E9F7FC;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
-    grid-template-rows: 40vh 40vh;
+    grid-template-columns: repeat(4, 23%);
     justify-content: center;
-    gap: 7px 15px;
+    gap: 15px 5px;
     margin-top: 7px;
     padding: 7px;
 }

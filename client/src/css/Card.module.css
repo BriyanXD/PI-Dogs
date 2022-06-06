@@ -48,4 +48,5 @@
     height: 246px;
     margin: 0;
     border:0;
+    object-fit: cover;
 }

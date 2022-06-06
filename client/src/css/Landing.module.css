@@ -4,7 +4,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    background-color:#00c9df;
+    background: #56CCF2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0085CA, #41ade8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0085CA, #41ade8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     height: 100vh;
     flex-wrap: wrap;
 }
@@ -37,8 +40,8 @@
 }
 .btn{
     font-family: 'Kdam Thmor Pro', sans-serif;
-    font-size: 16px;
-    background-color: rgb(17, 255, 17);
+    font-size: 14px;
+    background-color: #87D243;
     border-radius: 50px;
     border: none;
     width: 200px;
@@ -47,10 +50,10 @@
     transition: 0.5s;
 }
 .btn:hover{
-    background-color: rgb(84, 251, 84);
+    background-color: #a1e95e;
 }
 .btn:active{
-    background-color: rgb(1, 167, 1);
+    background-color: #7cc735;
 }
 
 @media (min-width:1280px){

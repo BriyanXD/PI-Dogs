@@ -3,8 +3,10 @@
 
 .pagina{
     font-family: 'Poppins', sans-serif;
-    background-color: rgb(74, 83, 95);
+    background-color: #2C444E;
     border: 0;
+    width: 40px;
+    height: 30px;
     color: white;
     cursor: pointer;
     transition: 0.3s;
