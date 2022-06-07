@@ -177,39 +177,55 @@ class FormOfCreation extends React.Component{
                     name:this.state.name.toString(),
                     weight:this.state.weight_min + " - " + this.state.weight_max,
                     height:this.state.height_min + " - " + this.state.height_max,
-                    life_span: this.state.life_span.toString(),
+                    life_span: this.state.life_span + " years",
                     name_temp: this.state.temperaments
                 }
                 await this.props.postForm(obj)
                 await this.props.getDogs()
                 await this.props.dogNumberForPagination(this.props.lengthDogs)
                 await this.props.cutForPaging((this.props.lengthDogs / 8))
-            }else{
+                alert("Elemento Creado")
+                await this.setState({
+                    name:"",
+                    image:"",
+                    weight_min:"",
+                    weight_max:"",
+                    height_min:"",
+                    height_max:"",
+                    life_span:"",
+                    temperaments:[],
+                    errorSend:"",
+                    enableButtonSend:false,
+                })
+            }else if(this.state.image){
                 const obj = {
                     name:this.state.name.toString(),
                     image:this.state.image,
                     weight:this.state.weight_min + " - " + this.state.weight_max,
                     height:this.state.height_min + " - " + this.state.height_max,
-                    life_span: this.state.life_span.toString(),
+                    life_span: this.state.life_span + " years",
                     name_temp: this.state.temperaments
                 }
                 await this.props.postForm(obj)
                 await this.props.getDogs()
                 await this.props.dogNumberForPagination(this.props.lengthDogs)
                 await this.props.cutForPaging((this.props.lengthDogs / 8))
+                alert("Elemento Creado")
+                await this.setState({
+                    name:"",
+                    image:"",
+                    weight_min:"",
+                    weight_max:"",
+                    height_min:"",
+                    height_max:"",
+                    life_span:"",
+                    temperaments:[],
+                    errorSend:"",
+                    enableButtonSend:false,
+                })
+            }else{
+                alert("Error al crear")
             }
-            await this.setState({
-                name:"",
-                image:"",
-                weight_min:"",
-                weight_max:"",
-                height_min:"",
-                height_max:"",
-                life_span:"",
-                temperaments:[],
-                errorSend:"",
-                enableButtonSend:false,
-            })
         }
     }
 

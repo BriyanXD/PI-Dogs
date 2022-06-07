@@ -15,7 +15,7 @@ class Card extends React.Component{
                  <div className={Style.text}>
                     <h3>{this.props.name}</h3>
                     <p className={Style.textsec}>Temperamentos: {this.props.temperaments}</p>
-                    <p className={Style.textsec}>Peso: {this.props.weight} lib.</p>
+                    <p className={Style.textsec}>Peso: {this.props.weight} kg</p>
                  </div>
             </div>
         )

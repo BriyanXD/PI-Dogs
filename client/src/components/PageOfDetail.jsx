@@ -36,7 +36,7 @@ class PageOfDetail extends React.Component{
                 <div className={Style.divInfo}>
                 <div className={Style.divDatos}>
                     <p>Altura : {height}</p>
-                    <p>Peso : {weight}</p>
+                    <p>Peso : {weight} kg</p>
                     <p>Vida : {life_span}</p>
                     {!createdDB ?<p  >Temperamentos : {temperaments}</p>:
                     <p>Temperamentos: {temps}</p>
