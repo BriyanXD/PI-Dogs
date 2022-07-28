@@ -156,11 +156,12 @@ class FormOfCreation extends React.Component{
        /*  let submit = e.target.submitBtn.name
         this.handlerChange(submit) */
         await this.props.getDogs()
-        const {name ,life_span ,weight_min ,weight_max , height_min , height_max , temperaments} = this.state.messageError
+        
+        const {name ,life_span ,weight_min ,weight_max , height_min , height_max , temperaments  ,weightError,  heightError} = this.state.messageError
         if(await this.props.dogs.find(dog => dog.name === this.state.name)){
             await this.handlerError(e.target.name,`${this.state.name} Ya existe`)
             return
-        }else if(name !== "" || life_span !== "" ||weight_min !== "" ||weight_max !== "" || height_min !== "" || height_max !== "" || temperaments !== "" ){
+        }else if(name !== "" || life_span !== "" ||weight_min !== "" ||weight_max !== "" || height_min !== "" || height_max !== "" || temperaments !== "" || weightError !== "" || heightError !== ""){
             this.handlerError("temperaments","Verfique que la informacion del formulario sera correcta")
             return
         }else if(this.state.name === "" || this.state.life_span === "" || this.state.weight_min === "" || this.state.weight_max === "" || this.state.height_min === "" || this.state.height_max === "" || this.state.temperaments.length < 1){
@@ -168,11 +169,11 @@ class FormOfCreation extends React.Component{
             return
         }
         else{
+            await this.props.switchVisibleCreation(false)
             if(!this.state.image){
                 this.setState({
                     enableButtonSend:true
                 })
-                await this.props.switchVisibleCreation(false)
              const obj ={
                     name:this.state.name.toString(),
                     weight:this.state.weight_min + " - " + this.state.weight_max,

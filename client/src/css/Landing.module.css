@@ -61,3 +61,11 @@
         flex-direction: column-reverse;
     }
 }
+
+@media (max-width:600px){
+    .contenedorPrincipal{
+        flex-direction: row;
+        height: 100vh;
+        overflow: auto;
+    }
+}
